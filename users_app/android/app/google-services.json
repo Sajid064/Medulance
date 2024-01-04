@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "593455084856",
+    "project_id": "medulance-3",
+    "storage_bucket": "medulance-3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593455084856:android:6027ee62ee41d53493bdcd",
+        "android_client_info": {
+          "package_name": "com.example.users_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxC7FP5pQEpYR2ZK1-7jmK0FnpyDImXo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
