@@ -45,7 +45,9 @@ class _SignUpScreenState extends State<SignUpScreen>
     }
     else
     {
-      cMethods.displaySnackBar("Please choose image first.", context);
+      signUpFormValidation();
+
+      // cMethods.displaySnackBar("Please choose image first.", context);
     }
   }
 

@@ -1,3 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:users_app/db/share_pref.dart';
+// import 'package:women_safety_app/child/bottom_screens/child_home_page.dart';
+import 'package:users_app/child/child_login_screen.dart';
+import 'package:users_app/parent/parent_home_screen.dart';
+import 'package:users_app/utils/constants.dart';
+import 'package:users_app/utils/flutter_background_services.dart';
+import 'child/bottom_page.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +20,9 @@ import 'package:users_app/authentication/signup_screen.dart';
 import 'package:users_app/firebase_options.dart';
 import 'package:users_app/pages/home_page.dart';
 
-Future<void> main() async {
+final navigatorkey = GlobalKey<ScaffoldMessengerState>();
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -21,26 +34,45 @@ Future<void> main() async {
     }
   });
 
+
+  await Permission.locationWhenInUse.isDenied.then((valueOfPermission) {
+    if (valueOfPermission) {
+      Permission.locationWhenInUse.request();
+    }
+  });
+
+  await MySharedPrefference.init();
+  await initializeService();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AppInfo(),
-      child: MaterialApp(
-        title: 'Flutter User App',
+    return MaterialApp(
+        title: 'Flutter Demo',
+        // scaffoldMessengerKey: navigatorkey,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Colors.black,
+        theme: ThemeData(
+          textTheme: GoogleFonts.firaSansTextTheme(
+            Theme.of(context).textTheme,
+          ),
+          primarySwatch: Colors.blue,
         ),
-        home: FirebaseAuth.instance.currentUser == null
-            ? LoginScreen()
-            : HomePage(),
-      ),
-    );
+        home: BottomPage());
   }
 }
+
+// class CheckAuth extends StatelessWidget {
+//   // const CheckAuth({Key? key}) : super(key: key);
+
+//   checkData() {
+//     if (MySharedPrefference.getUserType() == 'parent') {}
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold();
+//   }
+// }
