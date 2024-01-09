@@ -7,7 +7,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shake/shake.dart';
-import 'package:telephony/telephony.dart';
 import 'package:users_app/db/db_services.dart';
 import 'package:users_app/model/contactsm.dart';
 import 'package:users_app/widgets/home_widgets/CustomCarouel.dart';
@@ -22,57 +21,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // const HomeScreen({super.key});
+  //const HomeScreen({super.key});
   int qIndex = 0;
+
+  _getPermission() async => await [Permission.sms].request();
+  _isPermissionGranted() async => await Permission.sms.status.isGranted;
   Position? _curentPosition;
   String? _curentAddress;
   LocationPermission? permission;
-  _getPermission() async => await [Permission.sms].request();
-  _isPermissionGranted() async => await Permission.sms.status.isGranted;
-  // _sendSms(String phoneNumber, String message, {int? simSlot}) async {
-  //   SmsStatus result = await BackgroundSms.sendMessage(
-  //       phoneNumber: phoneNumber, message: message, simSlot: 1);
-  //   if (result == SmsStatus.sent) {
-  //     print("Sent");
-  //     Fluttertoast.showToast(msg: "send");
-  //   } else {
-  //     Fluttertoast.showToast(msg: "failed");
-  //   }
-  // }
 
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
-      return false;
+  _sendSms(String phoneNumber, String message, {int? simSlot}) async {
+    SmsStatus result = await BackgroundSms.sendMessage(
+        phoneNumber: phoneNumber, message: message, simSlot: 1);
+    if (result == SmsStatus.sent) {
+      print("Sent");
+      Fluttertoast.showToast(msg: "send");
+    } else {
+      Fluttertoast.showToast(msg: "failed");
     }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are denied')));
-        return false;
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
-      return false;
-    }
-    return true;
   }
 
   _getCurrentLocation() async {
     final hasPermission = await _handleLocationPermission();
-    final Telephony telephony = Telephony.instance;
-    await telephony.requestPhoneAndSmsPermissions;
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
@@ -103,6 +73,35 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location services are disabled. Please enable the services')));
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
+  }
+
   getRandomQuote() {
     Random random = Random();
     setState(() {
@@ -117,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
         "https://maps.google.com/?daddr=${_curentPosition!.latitude},${_curentPosition!.longitude}";
     if (await _isPermissionGranted()) {
       contactList.forEach((element) {
-        // _sendSms("${element.number}", "i am in trouble $messageBody");
+        _sendSms("${element.number}", "i am in lot of trouble $messageBody");
       });
     } else {
       Fluttertoast.showToast(msg: "something wrong");
@@ -131,7 +130,21 @@ class _HomeScreenState extends State<HomeScreen> {
     _getPermission();
     _getCurrentLocation();
 
-    ////// shake feature ///
+    ShakeDetector detector = ShakeDetector.autoStart(
+      onPhoneShake: () {
+        getAndSendSms();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Shake!'),
+          ),
+        );
+        // Do stuff on phone shake
+      },
+      minimumShakeCount: 3,
+      shakeSlopTimeMS: 500,
+      shakeCountResetTime: 6000,
+      shakeThresholdGravity: 2.7,
+    );
 
     // To close: detector.stopListening();
     // ShakeDetector.waitForStart() waits for user to call detector.startListening();
@@ -153,11 +166,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 5),
-              CustomAppBar(
-                  quoteIndex: qIndex,
-                  onTap: () {
-                    getRandomQuote();
-                  }),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+
+                  Text(
+                    "Medulance",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.pinkAccent),
+                  ),
+                ],
+              ),
               SizedBox(height: 5),
               SizedBox(
                 height: 10,
@@ -211,6 +230,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 10),
                     LiveSafe(),
                     SafeHome(),
+                    SizedBox(height: 20),
+                    CustomAppBar(
+                        quoteIndex: qIndex,
+                        onTap: () {
+                          getRandomQuote();
+                        }),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),

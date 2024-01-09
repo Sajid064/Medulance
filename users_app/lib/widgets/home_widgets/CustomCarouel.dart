@@ -34,7 +34,7 @@ class CustomCarouel extends StatelessWidget {
                       context,
                       SafeWebView(
                           url:
-                              "https://gulfnews.com/world/asia/pakistan/womens-day-10-pakistani-women-inspiring-the-country-1.77696239"));
+                              "https://www.healthline.com/health/exercise-fitness/how-to-motivate-yourself-to-workout"));
                 } else if (index == 1) {
                   navigateToRoute(
                       context,

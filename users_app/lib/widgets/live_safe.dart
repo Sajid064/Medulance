@@ -44,7 +44,7 @@ class LiveSafe extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           PoliceStationCard(onMapFunction: openMap),
-          HospitalCard(),
+          HospitalCard(onMapFunction: openMap),
           PharmacyCard(onMapFunction: openMap),
           BusStationCard(onMapFunction: openMap),
         ],

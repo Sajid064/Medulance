@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:users_app/authentication/login_screen.dart';
-import 'package:users_app/main4.dart';
 
 class HospitalCard extends StatelessWidget {
   final Function? onMapFunction;
@@ -15,7 +14,7 @@ class HospitalCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginScreen()));
+              onMapFunction!('hospitals near me');
             },
             child: Card(
               elevation: 3,

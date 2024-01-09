@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:users_app/db/share_pref.dart';
 // import 'package:women_safety_app/child/bottom_screens/child_home_page.dart';
-import 'package:users_app/child/child_login_screen.dart';
 import 'package:users_app/parent/parent_home_screen.dart';
 import 'package:users_app/utils/constants.dart';
 import 'package:users_app/utils/flutter_background_services.dart';
@@ -34,7 +33,6 @@ void main() async {
     }
   });
 
-
   await Permission.locationWhenInUse.isDenied.then((valueOfPermission) {
     if (valueOfPermission) {
       Permission.locationWhenInUse.request();
@@ -50,7 +48,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ChangeNotifierProvider(
+      create: (context) => AppInfo(),
+      child: MaterialApp(
         title: 'Flutter Demo',
         // scaffoldMessengerKey: navigatorkey,
         debugShowCheckedModeBanner: false,
@@ -60,7 +60,11 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
         ),
-        home: BottomPage());
+        home: FirebaseAuth.instance.currentUser == null
+            ? LoginScreen()
+            : BottomPage(),
+      ),
+    );
   }
 }
 

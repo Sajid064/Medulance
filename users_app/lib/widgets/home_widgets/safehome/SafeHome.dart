@@ -116,12 +116,6 @@ class _SafeHomeState extends State<SafeHome> {
                 SizedBox(height: 10),
                 if (_curentPosition != null) Text(_curentAddress!),
                 PrimaryButton(
-                    title: "GET LOCATION",
-                    onPressed: () {
-                      _getCurrentLocation();
-                    }),
-                SizedBox(height: 10),
-                PrimaryButton(
                     title: "SEND ALERT",
                     onPressed: () async {
                       String recipients = "";
