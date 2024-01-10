@@ -33,12 +33,14 @@ class _BottomPageState extends State<BottomPage> {
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 20,
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         onTap: onTapped,
+        fixedColor: Colors.pinkAccent,
         items: [
           BottomNavigationBarItem(
-              label: 'home',
+              label: 'Home',
               icon: Icon(
                 Icons.home,
               )),
@@ -48,7 +50,7 @@ class _BottomPageState extends State<BottomPage> {
                 Icons.search,
               )),
           BottomNavigationBarItem(
-              label: 'contacts',
+              label: 'Contacts',
               icon: Icon(
                 Icons.contacts,
               )),

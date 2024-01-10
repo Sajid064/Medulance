@@ -187,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                       ),
                     ),
 
-                    const SizedBox(height: 32,),
+                    const SizedBox(height: 38,),
 
                     ElevatedButton(
                       onPressed: ()
@@ -195,11 +195,11 @@ class _SignUpScreenState extends State<SignUpScreen>
                         checkIfNetworkIsAvailable();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purple,
-                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10)
+                        backgroundColor: Colors.pinkAccent,
+                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 13)
                       ),
                       child: const Text(
-                        "Sign Up"
+                        "Sign Up",  style: TextStyle(color: Colors.white, fontSize: 22,),
                       ),
                     ),
 

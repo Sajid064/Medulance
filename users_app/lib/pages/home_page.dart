@@ -67,9 +67,9 @@ class _HomePageState extends State<HomePage> {
   makeDriverNearbyCarIcon() {
     if (carIconNearbyDriver == null) {
       ImageConfiguration configuration =
-          createLocalImageConfiguration(context, size: Size(0.5, 0.5));
+          createLocalImageConfiguration(context, size: Size(2, 2));
       BitmapDescriptor.fromAssetImage(
-              configuration, "assets/images/tracking.png")
+              configuration, "assets/images/tracking(1).png")
           .then((iconImage) {
         carIconNearbyDriver = iconImage;
       });
@@ -722,7 +722,7 @@ class _HomePageState extends State<HomePage> {
       key: sKey,
       drawer: Container(
         width: 255,
-        color: Colors.black87,
+        color: Colors.white,
         child: Drawer(
           backgroundColor: Colors.white10,
           child: ListView(
@@ -735,11 +735,11 @@ class _HomePageState extends State<HomePage> {
 
               //header
               Container(
-                color: Colors.black54,
+                color: const Color.fromRGBO(255, 255, 255, 0.541),
                 height: 160,
                 child: DrawerHeader(
                   decoration: const BoxDecoration(
-                    color: Colors.white10,
+                    color: Colors.white,
                   ),
                   child: Row(
                     children: [
@@ -758,7 +758,7 @@ class _HomePageState extends State<HomePage> {
                             userName,
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.grey,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -768,7 +768,7 @@ class _HomePageState extends State<HomePage> {
                           const Text(
                             "Profile",
                             style: TextStyle(
-                              color: Colors.white38,
+                              color: Colors.pinkAccent,
                             ),
                           ),
                         ],
@@ -780,7 +780,7 @@ class _HomePageState extends State<HomePage> {
 
               const Divider(
                 height: 1,
-                color: Colors.grey,
+                color: Colors.pinkAccent,
                 thickness: 1,
               ),
 
@@ -799,12 +799,12 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.history,
-                      color: Colors.grey,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                   title: const Text(
                     "History",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
@@ -819,12 +819,12 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.info,
-                      color: Colors.grey,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                   title: const Text(
                     "About",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
@@ -841,12 +841,12 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.logout,
-                      color: Colors.grey,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                   title: const Text(
                     "Logout",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
@@ -881,7 +881,7 @@ class _HomePageState extends State<HomePage> {
 
           ///drawer button
           Positioned(
-            top: 36,
+            top: 54,
             left: 19,
             child: GestureDetector(
               onTap: () {
@@ -905,11 +905,11 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 child: CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 20,
+                  backgroundColor: Colors.white,
+                  radius: 22,
                   child: Icon(
                     isDrawerOpened == true ? Icons.menu : Icons.close,
-                    color: Colors.black87,
+                    color: Colors.pinkAccent,
                   ),
                 ),
               ),
@@ -926,49 +926,41 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      var responseFromSearchPage = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (c) => SearchDestinationPage()));
+                  Container(
+                    width: 360,
+                    height: 55,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        var responseFromSearchPage = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => SearchDestinationPage()));
 
-                      if (responseFromSearchPage == "placeSelected") {
-                        displayUserRideDetailsContainer();
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                        shape: const CircleBorder(),
-                        padding: const EdgeInsets.all(24)),
-                    child: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                        shape: const CircleBorder(),
-                        padding: const EdgeInsets.all(24)),
-                    child: const Icon(
-                      Icons.home,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                        shape: const CircleBorder(),
-                        padding: const EdgeInsets.all(24)),
-                    child: const Icon(
-                      Icons.work,
-                      color: Colors.white,
-                      size: 25,
+                        if (responseFromSearchPage == "placeSelected") {
+                          displayUserRideDetailsContainer();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.pinkAccent,
+                          // shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Search location ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -986,11 +978,11 @@ class _HomePageState extends State<HomePage> {
               decoration: const BoxDecoration(
                 color: Colors.black54,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15)),
+                    topLeft: Radius.circular(18),
+                    topRight: Radius.circular(18)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white12,
+                    color: Colors.white,
                     blurRadius: 15.0,
                     spreadRadius: 0.5,
                     offset: Offset(.7, .7),
@@ -1004,85 +996,82 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16),
-                      child: SizedBox(
-                        height: 190,
-                        child: Card(
-                          elevation: 10,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * .70,
-                            color: Colors.black45,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8, bottom: 8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8, right: 8),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          (tripDirectionDetailsInfo != null)
-                                              ? tripDirectionDetailsInfo!
-                                                  .distanceTextString!
-                                              : "",
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white70,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          (tripDirectionDetailsInfo != null)
-                                              ? tripDirectionDetailsInfo!
-                                                  .durationTextString!
-                                              : "",
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white70,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
+                      child: Container(
+                        height: 200,
+                        width: MediaQuery.of(context).size.width * .70,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 8, right: 8),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      (tripDirectionDetailsInfo != null)
+                                          ? tripDirectionDetailsInfo!
+                                              .distanceTextString!
+                                          : "",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        stateOfApp = "requesting";
-                                      });
-
-                                      displayRequestContainer();
-
-                                      //get nearest available online drivers
-                                      availableNearbyOnlineDriversList =
-                                          ManageDriversMethods
-                                              .nearbyOnlineDriversList;
-
-                                      //search driver
-                                      searchDriver();
-                                    },
-                                    child: Image.asset(
-                                      "assets/images/uberexec.png",
-                                      height: 122,
-                                      width: 122,
+                                    Text(
+                                      (tripDirectionDetailsInfo != null)
+                                          ? tripDirectionDetailsInfo!
+                                              .durationTextString!
+                                          : "",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    (tripDirectionDetailsInfo != null)
-                                        ? "\$ ${(cMethods.calculateFareAmount(tripDirectionDetailsInfo!)).toString()}"
-                                        : "",
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white70,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    stateOfApp = "requesting";
+                                  });
+
+                                  displayRequestContainer();
+
+                                  //get nearest available online drivers
+                                  availableNearbyOnlineDriversList =
+                                      ManageDriversMethods
+                                          .nearbyOnlineDriversList;
+
+                                  //search driver
+                                  searchDriver();
+                                },
+                                child: Image.asset(
+                                  "assets/images/ambulance(1).png",
+                                  height: 122,
+                                  width: 150,
+                                ),
+                              ),
+                              Text(
+                                (tripDirectionDetailsInfo != null)
+                                    ? "\$ ${(cMethods.calculateFareAmount(tripDirectionDetailsInfo!)).toString()}"
+                                    : "",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.pinkAccent,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

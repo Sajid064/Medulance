@@ -64,10 +64,10 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
               child: Container(
                 height: 230,
                 decoration: const BoxDecoration(
-                  color: Colors.black12,
+                  color: Color.fromARGB(255, 255, 64, 129),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black12,
+                      color: Colors.purpleAccent,
                       blurRadius: 5.0,
                       spreadRadius: 0.5,
                       offset: Offset(0.7, 0.7),
@@ -116,8 +116,8 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                         children: [
                           Image.asset(
                             "assets/images/initial.png",
-                            height: 16,
-                            width: 16,
+                            height: 18,
+                            width: 18,
                           ),
                           const SizedBox(
                             width: 18,
@@ -125,7 +125,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
@@ -156,8 +156,8 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                         children: [
                           Image.asset(
                             "assets/images/final.png",
-                            height: 16,
-                            width: 16,
+                            height: 18,
+                            width: 18,
                           ),
                           const SizedBox(
                             width: 18,
@@ -165,7 +165,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(

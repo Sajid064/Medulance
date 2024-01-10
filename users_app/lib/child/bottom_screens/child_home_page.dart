@@ -1,13 +1,18 @@
 import 'dart:math';
 
 import 'package:background_sms/background_sms.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shake/shake.dart';
+import 'package:users_app/authentication/login_screen.dart';
 import 'package:users_app/db/db_services.dart';
+import 'package:users_app/global/global_var.dart';
+import 'package:users_app/methods/common_methods.dart';
 import 'package:users_app/model/contactsm.dart';
 import 'package:users_app/widgets/home_widgets/CustomCarouel.dart';
 import 'package:users_app/widgets/home_widgets/custom_appBar.dart';
@@ -41,7 +46,40 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  CommonMethods cMethods = CommonMethods();
+
+  getUserInfoAndCheckBlockStatus() async {
+    DatabaseReference usersRef = FirebaseDatabase.instance
+        .ref()
+        .child("users")
+        .child(FirebaseAuth.instance.currentUser!.uid);
+
+    await usersRef.once().then((snap) {
+      if (snap.snapshot.value != null) {
+        if ((snap.snapshot.value as Map)["blockStatus"] == "no") {
+          setState(() {
+            userName = (snap.snapshot.value as Map)["name"];
+            userPhone = (snap.snapshot.value as Map)["phone"];
+          });
+        } else {
+          FirebaseAuth.instance.signOut();
+
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => LoginScreen()));
+
+          cMethods.displaySnackBar(
+              "you are blocked. Contact admin: alizeb875@gmail.com", context);
+        }
+      } else {
+        FirebaseAuth.instance.signOut();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => LoginScreen()));
+      }
+    });
+  }
+
   _getCurrentLocation() async {
+    await getUserInfoAndCheckBlockStatus();
     final hasPermission = await _handleLocationPermission();
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(
@@ -169,11 +207,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-
                   Text(
                     "Medulance",
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.pinkAccent),
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pinkAccent),
                   ),
                 ],
               ),
@@ -201,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Emergency(),
-                    SizedBox(height: 10),
+                    SizedBox(height: 25),
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
@@ -213,9 +253,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
                     CustomCarouel(),
-                    SizedBox(height: 10),
+                    SizedBox(height: 30),
+                    
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
@@ -227,10 +267,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
                     LiveSafe(),
+                    SizedBox(
+                      height: 30,
+                      
+                    ),
                     SafeHome(),
-                    SizedBox(height: 20),
+                    
+                    SizedBox(height: 30),
                     CustomAppBar(
                         quoteIndex: qIndex,
                         onTap: () {

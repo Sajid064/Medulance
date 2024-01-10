@@ -115,12 +115,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: const InputDecoration(
                         labelText: "User Email",
                         labelStyle: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                        color: Colors.black,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(
@@ -133,26 +133,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: const InputDecoration(
                         labelText: "User Password",
                         labelStyle: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                        color: Colors.black,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(
-                      height: 32,
+                      height: 38,
                     ),
                     ElevatedButton(
                       onPressed: () {
                         checkIfNetworkIsAvailable();
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.purple,
+                          backgroundColor: Colors.pinkAccent,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 80, vertical: 10)),
-                      child: const Text("Login"),
+                              horizontal: 80, vertical: 15)),
+                      child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 22,),),
                     ),
                   ],
                 ),

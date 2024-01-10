@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -15,4 +17,4 @@ const CameraPosition googlePlexInitialPosition = CameraPosition(
 );
 
 String userEmail = "";
-String userPhoto = "";
+File? userPhoto;

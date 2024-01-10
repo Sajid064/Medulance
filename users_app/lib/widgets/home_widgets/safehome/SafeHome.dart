@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:users_app/db/db_services.dart';
 import 'package:users_app/model/contactsm.dart';
+import 'package:users_app/components/PrimaryButton.dart';
 
 class SafeHome extends StatefulWidget {
   @override
@@ -102,43 +103,51 @@ class _SafeHomeState extends State<SafeHome> {
       context: context,
       builder: (context) {
         return Container(
-          height: MediaQuery.of(context).size.height / 1.4,
+          height: MediaQuery.of(context).size.height / 2.4,
           child: Padding(
             padding: const EdgeInsets.all(14.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "SEND YOUR CUURENT LOCATION IMMEDIATELY TO YOU EMERGENCY CONTACTS",
+                  "SEND THE CURRENT LOCATION IMMEDIATELY TO THE EMERGENCY CONTACTS",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(height: 10),
-                if (_curentPosition != null) Text(_curentAddress!),
-                PrimaryButton(
-                    title: "SEND ALERT",
-                    onPressed: () async {
-                      String recipients = "";
-                      List<TContact> contactList =
-                          await DatabaseHelper().getContactList();
-                      print(contactList.length);
-                      if (contactList.isEmpty) {
-                        Fluttertoast.showToast(
-                            msg: "emergency contact is empty");
-                      } else {
-                        String messageBody =
-                            "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
+                SizedBox(height: 50),
+                ElevatedButton(
+                  onPressed: () async {
+                    String recipients = "";
+                    List<TContact> contactList =
+                        await DatabaseHelper().getContactList();
+                    print(contactList.length);
+                    if (contactList.isEmpty) {
+                      Fluttertoast.showToast(msg: "emergency contact is empty");
+                    } else {
+                      String messageBody =
+                          "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
 
-                        if (await _isPermissionGranted()) {
-                          contactList.forEach((element) {
-                            _sendSms("${element.number}",
-                                "i am in trouble $messageBody");
-                          });
-                        } else {
-                          Fluttertoast.showToast(msg: "something wrong");
-                        }
+                      if (await _isPermissionGranted()) {
+                        contactList.forEach((element) {
+                          _sendSms("${element.number}",
+                              "i am in trouble $messageBody");
+                        });
+                      } else {
+                        Fluttertoast.showToast(msg: "something wrong");
                       }
-                    }),
+                    }
+                  },
+                  child: Text(
+                    "SOS Button",
+                    style: TextStyle(fontSize: 22, color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pinkAccent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    minimumSize: Size(220.0, 65.0),
+                  ),
+                ),
               ],
             ),
           ),
