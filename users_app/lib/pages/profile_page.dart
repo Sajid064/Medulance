@@ -95,8 +95,13 @@ class _ProfilePageState extends State<ProfilePage> {
     
     return Scaffold(
       appBar: AppBar(
-        
-        title: Center(child: Text('User Profile')),
+        backgroundColor: Colors.pinkAccent,
+        title: const Text(
+          'User Profile',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Center(
         child: Column(

@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage>
   final Completer<GoogleMapController> googleMapCompleterController = Completer<GoogleMapController>();
   GoogleMapController? controllerGoogleMap;
   Position? currentPositionOfDriver;
-  Color colorToShow = Colors.green;
+  Color colorToShow = Colors.greenAccent;
   String titleToShow = "GO ONLINE NOW";
   bool isDriverAvailable = false;
   DatabaseReference? newTripRequestReference;
@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage>
                                             Navigator.pop(context);
                                           },
                                           child: const Text(
-                                            "BACK"
+                                            "BACK", style: TextStyle(color: Colors.black, fontSize: 16),
                                           ),
                                         ),
                                       ),
@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage>
                                               Navigator.pop(context);
 
                                               setState(() {
-                                                colorToShow = Colors.pink;
+                                                colorToShow = Colors.redAccent;
                                                 titleToShow = "GO OFFLINE NOW";
                                                 isDriverAvailable = true;
                                               });
@@ -269,7 +269,7 @@ class _HomePageState extends State<HomePage>
                                               Navigator.pop(context);
 
                                               setState(() {
-                                                colorToShow = Colors.green;
+                                                colorToShow = Colors.greenAccent;
                                                 titleToShow = "GO ONLINE NOW";
                                                 isDriverAvailable = false;
                                               });
@@ -277,11 +277,11 @@ class _HomePageState extends State<HomePage>
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: (titleToShow == "GO ONLINE NOW")
-                                                ? Colors.green
-                                                : Colors.pink,
+                                                ? Colors.greenAccent
+                                                : Colors.redAccent,
                                           ),
                                           child: const Text(
-                                              "CONFIRM"
+                                              "CONFIRM", style: TextStyle(color: Colors.black, fontSize: 16)
                                           ),
                                         ),
                                       ),
@@ -298,9 +298,12 @@ class _HomePageState extends State<HomePage>
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: colorToShow,
+                    fixedSize: Size(230, 55),
                   ),
                   child: Text(
                     titleToShow,
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    
                   ),
                 ),
 

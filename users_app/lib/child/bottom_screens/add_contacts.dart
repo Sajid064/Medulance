@@ -36,7 +36,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
   void deleteContact(TContact contact) async {
     int result = await databasehelper.deleteContact(contact.id);
     if (result != 0) {
-      Fluttertoast.showToast(msg: "contact removed succesfully");
+      Fluttertoast.showToast(msg: "Contact emoved succesfully");
       showList();
     }
   }
@@ -55,65 +55,111 @@ class _AddContactsPageState extends State<AddContactsPage> {
     if (contactList == null) {
       contactList = [];
     }
-    return SafeArea(
-      child: Container(
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pinkAccent,
+        title: const Text(
+          'Emergency Contacts',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+      body: Center(
+        child: Container(
           padding: EdgeInsets.all(12),
           child: Column(
             children: [
-              PrimaryButton(
-                  title: "Add Trusted Contacts",
-                  onPressed: () async {
-                    bool result = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ContactsPage(),
-                        ));
-                    if (result == true) {
-                      showList();
-                    }
-                  }),
               Expanded(
                 child: ListView.builder(
                   // shrinkWrap: true,
                   itemCount: count,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          title: Text(contactList![index].name),
-                          trailing: Container(
-                            width: 100,
-                            child: Row(
-                              children: [
-                                IconButton(
-                                    onPressed: () async {
-                                      await FlutterPhoneDirectCaller.callNumber(
-                                          contactList![index].number);
-                                    },
-                                    icon: Icon(
-                                      Icons.call,
-                                      color: Colors.red,
-                                    )),
-                                IconButton(
-                                    onPressed: () {
-                                      deleteContact(contactList![index]);
-                                    },
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    )),
-                              ],
+                    return Column(
+                      children: [
+                        SizedBox(height: 10,),
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(contactList![index].name),
+                              trailing: Container(
+                                width: 100,
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                        onPressed: () async {
+                                          await FlutterPhoneDirectCaller.callNumber(
+                                              contactList![index].number);
+                                        },
+                                        icon: Icon(
+                                          Icons.call,
+                                          color: Colors.blueAccent,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+                                          deleteContact(contactList![index]);
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     );
                   },
                 ),
               ),
+              ElevatedButton(
+                
+                onPressed: () async {
+                  bool result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ContactsPage(),
+                      ));
+                  if (result == true) {
+                    showList();
+                  }
+                },
+    
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pinkAccent,
+                    
+                    // shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(10),
+                    fixedSize: Size(360.0, 55.0),),
+
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Add Emergency Contacts ",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ],
+                ),
+              ),
+              
+              SizedBox(height: 10,),
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

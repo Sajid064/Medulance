@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Drivers App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
+      theme: ThemeData.light().copyWith(
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: FirebaseAuth.instance.currentUser == null
           ? LoginScreen()

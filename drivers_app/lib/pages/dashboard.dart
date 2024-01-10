@@ -59,6 +59,7 @@ class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMix
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+
         items: const
         [
           BottomNavigationBarItem(
@@ -81,7 +82,7 @@ class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMix
         currentIndex: indexSelected,
         //backgroundColor: Colors.grey,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.pink,
+        selectedItemColor: Colors.pinkAccent,
         showSelectedLabels: true,
         selectedLabelStyle: const TextStyle(fontSize: 12),
         type: BottomNavigationBarType.fixed,
@@ -90,3 +91,17 @@ class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMix
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

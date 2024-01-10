@@ -948,7 +948,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Search location ",
+                            "Search location",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,

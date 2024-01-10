@@ -13,20 +13,20 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage>
-{
+class _ProfilePageState extends State<ProfilePage> {
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController carTextEditingController = TextEditingController();
 
-  setDriverInfo()
-  {
+  setDriverInfo() {
     setState(() {
       nameTextEditingController.text = driverName;
       phoneTextEditingController.text = driverPhone;
-      emailTextEditingController.text = FirebaseAuth.instance.currentUser!.email.toString();
-      carTextEditingController.text = carNumber + " - " + carColor + " - " + carModel;
+      emailTextEditingController.text =
+          FirebaseAuth.instance.currentUser!.email.toString();
+      carTextEditingController.text =
+          carNumber + " - " + carColor + " - " + carModel;
     });
   }
 
@@ -41,12 +41,20 @@ class _ProfilePageState extends State<ProfilePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pinkAccent,
+        title: const Text(
+          'Driver Profile',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               //image
               Container(
                 width: 180,
@@ -55,41 +63,44 @@ class _ProfilePageState extends State<ProfilePage>
                     shape: BoxShape.circle,
                     color: Colors.grey,
                     image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(
-                          driverPhoto,
-                        ),
-                    )
-                ),
+                      fit: BoxFit.fitHeight,
+                      image: NetworkImage(
+                        driverPhoto,
+                      ),
+                    )),
               ),
 
               const SizedBox(
                 height: 16,
               ),
 
-              //driver name
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 8),
                 child: TextField(
                   controller: nameTextEditingController,
                   textAlign: TextAlign.center,
                   enabled: false,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
                   decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white24,
                     border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
                       borderSide: BorderSide(
-                        color: Colors.white,
+                        color: Colors.black,
                         width: 2,
                       ),
                     ),
                     prefixIcon: Icon(
                       Icons.person,
-                      color: Colors.white,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                 ),
+              ),
+
+              const SizedBox(
+                height: 10,
               ),
 
               //driver phone
@@ -99,22 +110,27 @@ class _ProfilePageState extends State<ProfilePage>
                   controller: phoneTextEditingController,
                   textAlign: TextAlign.center,
                   enabled: false,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
                   decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white24,
                     border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
                       borderSide: BorderSide(
-                        color: Colors.white,
+                        color: Colors.black,
                         width: 2,
                       ),
                     ),
                     prefixIcon: Icon(
                       Icons.phone_android_outlined,
-                      color: Colors.white,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                 ),
+              ),
+
+              const SizedBox(
+                height: 10,
               ),
 
               //driver email
@@ -124,24 +140,28 @@ class _ProfilePageState extends State<ProfilePage>
                   controller: emailTextEditingController,
                   textAlign: TextAlign.center,
                   enabled: false,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
                   decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white24,
                     border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
                       borderSide: BorderSide(
-                        color: Colors.white,
+                        color: Colors.black,
                         width: 2,
                       ),
                     ),
                     prefixIcon: Icon(
                       Icons.email,
-                      color: Colors.white,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                 ),
               ),
 
+              const SizedBox(
+                height: 10,
+              ),
               //driver car info
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 4),
@@ -149,44 +169,45 @@ class _ProfilePageState extends State<ProfilePage>
                   controller: carTextEditingController,
                   textAlign: TextAlign.center,
                   enabled: false,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
                   decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white24,
                     border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
                       borderSide: BorderSide(
-                        color: Colors.white,
+                        color: Colors.black,
                         width: 2,
                       ),
                     ),
                     prefixIcon: Icon(
                       Icons.drive_eta_rounded,
-                      color: Colors.white,
+                      color: Colors.pinkAccent,
                     ),
                   ),
                 ),
               ),
 
               const SizedBox(
-                height: 12,
+                height: 20,
               ),
 
               //logout btn
               ElevatedButton(
-                onPressed: ()
-                {
+                onPressed: () {
                   FirebaseAuth.instance.signOut();
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (c) => LoginScreen()));
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink,
-                    padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 18)
-                ),
+                    backgroundColor: Colors.pinkAccent,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 80, vertical: 18)),
                 child: const Text(
-                    "Logout"
+                  "Logout",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
-
             ],
           ),
         ),
