@@ -62,13 +62,14 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
             Card(
               elevation: 10,
               child: Container(
-                height: 230,
+                height: 240,
                 decoration: const BoxDecoration(
+
                   color: Color.fromARGB(255, 255, 64, 129),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.purpleAccent,
-                      blurRadius: 5.0,
+                      blurRadius: 15.0,
                       spreadRadius: 0.5,
                       offset: Offset(0.7, 0.7),
                     ),
@@ -108,7 +109,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                       ),
 
                       const SizedBox(
-                        height: 18,
+                        height: 16,
                       ),
 
                       //pickup text field

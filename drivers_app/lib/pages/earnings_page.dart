@@ -24,7 +24,7 @@ class _EarningsPageState extends State<EarningsPage> {
       if ((snap.snapshot.value as Map)["earnings"] != null) {
         setState(() {
           driverEarnings =
-              ((snap.snapshot.value as Map)["earnings"]).toString();
+              ((snap.snapshot.value as Map)["earnings"]).toStringAsFixed(1);
         });
       }
     });

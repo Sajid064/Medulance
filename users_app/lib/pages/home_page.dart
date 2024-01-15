@@ -904,7 +904,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(30),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black26,
@@ -988,8 +988,8 @@ class _HomePageState extends State<HomePage> {
               decoration: const BoxDecoration(
                 color: Colors.black54,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(18),
-                    topRight: Radius.circular(18)),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.white,
@@ -1073,7 +1073,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Text(
                                 (tripDirectionDetailsInfo != null)
-                                    ? "\$ ${(cMethods.calculateFareAmount(tripDirectionDetailsInfo!)).toString()}"
+                                    ? "\৳ ${(cMethods.calculateFareAmount(tripDirectionDetailsInfo!)).toString()}"
                                     : "",
                                 style: const TextStyle(
                                   fontSize: 20,
@@ -1102,8 +1102,8 @@ class _HomePageState extends State<HomePage> {
               decoration: const BoxDecoration(
                 color: Colors.black54,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16)),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
@@ -1145,9 +1145,9 @@ class _HomePageState extends State<HomePage> {
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
-                          color: Colors.white70,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(25),
-                          border: Border.all(width: 1.5, color: Colors.white),
+                          border: Border.all(width: 1.5, color: Colors.black),
                         ),
                         child: const Icon(
                           Icons.close,
@@ -1172,8 +1172,8 @@ class _HomePageState extends State<HomePage> {
               decoration: const BoxDecoration(
                 color: Colors.black87,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16)),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.white24,
@@ -1203,8 +1203,8 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           tripStatusDisplay,
                           style: const TextStyle(
-                            fontSize: 19,
-                            color: Colors.grey,
+                            fontSize: 17,
+                            color: Colors.amber,
                           ),
                         ),
                       ],
@@ -1249,8 +1249,8 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               nameDriver,
                               style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.grey,
+                                fontSize: 22,
+                                color: Colors.white,
                               ),
                             ),
                             Text(
@@ -1298,12 +1298,12 @@ class _HomePageState extends State<HomePage> {
                                       Radius.circular(25)),
                                   border: Border.all(
                                     width: 1,
-                                    color: Colors.white,
+                                    color: Colors.greenAccent,
                                   ),
                                 ),
                                 child: const Icon(
                                   Icons.phone,
-                                  color: Colors.white,
+                                  color: Colors.greenAccent,
                                 ),
                               ),
                               const SizedBox(
@@ -1312,7 +1312,8 @@ class _HomePageState extends State<HomePage> {
                               const Text(
                                 "Call",
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.white,
+                                  fontSize: 14,
                                 ),
                               ),
                             ],

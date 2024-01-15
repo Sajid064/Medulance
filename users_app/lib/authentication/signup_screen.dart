@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:users_app/authentication/login_screen.dart';
+import 'package:users_app/child/bottom_page.dart';
 import 'package:users_app/methods/common_methods.dart';
 import 'package:users_app/pages/home_page.dart';
 import 'package:users_app/widgets/loading_dialog.dart';
@@ -78,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     };
     usersRef.set(userDataMap);
 
-    Navigator.push(context, MaterialPageRoute(builder: (c) => HomePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (c) => BottomPage()));
   }
 
   @override

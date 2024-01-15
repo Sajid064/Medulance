@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       minimumShakeCount: 3,
       shakeSlopTimeMS: 500,
-      shakeCountResetTime: 6000,
+      shakeCountResetTime: 3000,
       shakeThresholdGravity: 2.7,
     );
 
@@ -197,16 +197,20 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SizedBox(
-                height: 10,
-                child: Container(
-                  color: Colors.grey.shade100,
-                ),
-              ),
+              // SizedBox(
+              //   height: 10,
+              //   child: Container(
+              //     color: Colors.grey.shade100,
+              //   ),
+              // ),
               SizedBox(height: 5),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                  Image.asset('assets/images/logo.png',height: 50,width: 50,),
                   Text(
                     "Medulance",
                     textAlign: TextAlign.start,
@@ -214,6 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.pinkAccent),
+                  ),
+                    ],
                   ),
                 ],
               ),
@@ -255,7 +261,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     CustomCarouel(),
                     SizedBox(height: 30),
-                    
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
@@ -270,10 +275,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     LiveSafe(),
                     SizedBox(
                       height: 30,
-                      
                     ),
                     SafeHome(),
-                    
                     SizedBox(height: 30),
                     CustomAppBar(
                         quoteIndex: qIndex,

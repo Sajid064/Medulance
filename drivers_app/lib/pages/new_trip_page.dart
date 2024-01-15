@@ -43,7 +43,7 @@ class _NewTripPageState extends State<NewTripPage> {
   String statusOfTrip = "accepted";
   String durationText = "", distanceText = "";
   String buttonTitleText = "ARRIVED";
-  Color buttonColor = Colors.indigoAccent;
+  Color buttonColor = Colors.amber;
   CommonMethods cMethods = CommonMethods();
 
   makeMarker() {
@@ -52,7 +52,7 @@ class _NewTripPageState extends State<NewTripPage> {
           createLocalImageConfiguration(context, size: Size(2, 2));
 
       BitmapDescriptor.fromAssetImage(
-              configuration, "assets/images/tracking.png")
+              configuration, "assets/images/tracking(1).png")
           .then((valueIcon) {
         carMarkerIcon = valueIcon;
       });
@@ -434,7 +434,7 @@ class _NewTripPageState extends State<NewTripPage> {
                   ),
                 ],
               ),
-              height: 256,
+              height: 300,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
@@ -446,15 +446,15 @@ class _NewTripPageState extends State<NewTripPage> {
                       child: Text(
                         durationText + " - " + distanceText,
                         style: const TextStyle(
-                          color: Colors.green,
-                          fontSize: 15,
+                          color: Colors.amber,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
 
                     const SizedBox(
-                      height: 5,
+                      height: 20,
                     ),
 
                     //user name - call user icon btn
@@ -465,8 +465,8 @@ class _NewTripPageState extends State<NewTripPage> {
                         Text(
                           widget.newTripDetailsInfo!.userName!,
                           style: const TextStyle(
-                            color: Colors.green,
-                            fontSize: 20,
+                            color: Colors.white,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -483,7 +483,7 @@ class _NewTripPageState extends State<NewTripPage> {
                             padding: EdgeInsets.only(right: 10),
                             child: Icon(
                               Icons.phone_android_outlined,
-                              color: Colors.grey,
+                              color: Colors.greenAccent,
                             ),
                           ),
                         ),
@@ -503,13 +503,19 @@ class _NewTripPageState extends State<NewTripPage> {
                           width: 16,
                         ),
                         Expanded(
-                          child: Text(
-                            widget.newTripDetailsInfo!.pickupAddress.toString(),
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.grey,
-                            ),
+                          child: Row(
+                            children: [
+                              Text("  "),
+                              Text(
+                                widget.newTripDetailsInfo!.pickupAddress
+                                    .toString(),
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -528,14 +534,19 @@ class _NewTripPageState extends State<NewTripPage> {
                           width: 16,
                         ),
                         Expanded(
-                          child: Text(
-                            widget.newTripDetailsInfo!.dropOffAddress
-                                .toString(),
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.grey,
-                            ),
+                          child: Row(
+                            children: [
+                              Text("  "),
+                              Text(
+                                widget.newTripDetailsInfo!.dropOffAddress
+                                    .toString(),
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -552,7 +563,7 @@ class _NewTripPageState extends State<NewTripPage> {
                           if (statusOfTrip == "accepted") {
                             setState(() {
                               buttonTitleText = "START TRIP";
-                              buttonColor = Colors.green;
+                              buttonColor = Colors.greenAccent;
                             });
 
                             statusOfTrip = "arrived";
@@ -583,7 +594,7 @@ class _NewTripPageState extends State<NewTripPage> {
                           else if (statusOfTrip == "arrived") {
                             setState(() {
                               buttonTitleText = "END TRIP";
-                              buttonColor = Colors.amber;
+                              buttonColor = Colors.redAccent;
                             });
 
                             statusOfTrip = "ontrip";
@@ -607,7 +618,8 @@ class _NewTripPageState extends State<NewTripPage> {
                         child: Text(
                           buttonTitleText,
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
+                            fontSize: 18,
                           ),
                         ),
                       ),
