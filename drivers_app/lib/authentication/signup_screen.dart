@@ -157,7 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               imageFile == null
                   ? const CircleAvatar(
-                      radius: 86,
+                      radius: 50,
                       backgroundImage:
                           AssetImage("assets/images/avatarman.png"),
                     )
@@ -338,9 +338,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
 
-              const SizedBox(
-                height: 12,
-              ),
+              
+           
 
               //textbutton
               TextButton(

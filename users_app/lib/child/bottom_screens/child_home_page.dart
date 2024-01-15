@@ -19,6 +19,7 @@ import 'package:users_app/widgets/home_widgets/custom_appBar.dart';
 import 'package:users_app/widgets/home_widgets/emergency.dart';
 import 'package:users_app/widgets/home_widgets/safehome/SafeHome.dart';
 import 'package:users_app/widgets/live_safe.dart';
+import 'package:vibration/vibration.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -169,11 +170,24 @@ class _HomeScreenState extends State<HomeScreen> {
     _getCurrentLocation();
 
     ShakeDetector detector = ShakeDetector.autoStart(
-      onPhoneShake: () {
+      onPhoneShake: () async {
+        if (await Vibration.hasVibrator() ?? false) {
+          print("Test 2");
+          if (await Vibration.hasCustomVibrationsSupport() ?? false) {
+            print("Test 3");
+            Vibration.vibrate(duration: 1000);
+          } else {
+            print("Test 4");
+            Vibration.vibrate();
+            await Future.delayed(Duration(milliseconds: 500));
+            Vibration.vibrate();
+          }
+          print("Test 5");
+        }
         getAndSendSms();
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Shake!'),
+            content: Text('Shake Feature Enabled'),
           ),
         );
         // Do stuff on phone shake
@@ -209,16 +223,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
-                  Image.asset('assets/images/logo.png',height: 50,width: 50,),
-                  Text(
-                    "Medulance",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.pinkAccent),
-                  ),
+                    children: [
+                      Image.asset(
+                        'assets/images/logo.png',
+                        height: 50,
+                        width: 50,
+                      ),
+                      Row(children: [
+                        
+                        Text(
+                        "Medu",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.pinkAccent),
+                      ),
+                      Text(
+                        "lance",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.teal.shade600),
+                      ),
+                      ],
+                      ),
                     ],
                   ),
                 ],

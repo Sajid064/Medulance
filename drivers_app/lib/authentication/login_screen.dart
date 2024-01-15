@@ -90,7 +90,37 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              Image.asset("assets/images/logo.png"),
+              SizedBox(
+                height: 50,
+              ),
+              Image.asset(
+                "assets/images/logo.png",
+                height: 220,
+                width: 220,
+              ),
+              // SizedBox(height: -20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Medu",
+                    style: TextStyle(
+                        color: Colors.pinkAccent,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "lance",
+                    style: TextStyle(
+                        color: Colors.teal.shade600,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
 
               const Text(
                 "Login as a Driver",
