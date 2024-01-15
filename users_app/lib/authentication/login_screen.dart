@@ -28,11 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   signInFormValidation() {
-    if (!emailTextEditingController.text.contains("@")) {
+    if (!emailTextEditingController.text.contains("@") ||
+        !emailTextEditingController.text.contains(".com")) {
       cMethods.displaySnackBar("please write valid email.", context);
-    } else if (passwordTextEditingController.text.trim().length < 5) {
+    } else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaySnackBar(
-          "your password must be atleast 6 or more characters.", context);
+          "Your password must be atleast 6 or more characters.", context);
     } else {
       signInUser();
     }
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) =>
-          LoadingDialog(messageText: "Allowing you to Login..."),
+          LoadingDialog(messageText: "Logging in..."),
     );
 
     final User? userFirebase = (await FirebaseAuth.instance
@@ -75,12 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
           } else {
             FirebaseAuth.instance.signOut();
             cMethods.displaySnackBar(
-                "you are blocked. Contact admin: medulance@gmail.com", context);
+                "You are blocked. Contact admin: medulance@gmail.com", context);
           }
         } else {
           FirebaseAuth.instance.signOut();
           cMethods.displaySnackBar(
-              "your record do not exists as a User.", context);
+              "Your record do not exists as a User.", context);
         }
       });
     }
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 38,
+                      height: 36,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -152,14 +153,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           backgroundColor: Colors.pinkAccent,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 80, vertical: 15)),
-                      child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 22,),),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-
-              const SizedBox(
-                height: 12,
               ),
 
               //textbutton
@@ -168,11 +171,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (c) => SignUpScreen()));
                 },
-                child: const Text(
-                  "Don\'t have an Account? Register Here",
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don\'t have an Account? ",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const Text(
+                      "Register Here",
+                      style: TextStyle(
+                        color: Colors.pinkAccent,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

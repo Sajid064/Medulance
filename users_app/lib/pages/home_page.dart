@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -714,6 +716,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  File? _image = userPhoto;
+
   @override
   Widget build(BuildContext context) {
     makeDriverNearbyCarIcon();
@@ -743,11 +747,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Row(
                     children: [
-                      Image.asset(
-                        "assets/images/avatarman.png",
-                        width: 60,
-                        height: 60,
-                      ),
+                      _image == null
+                          ? CircleAvatar(
+                              radius: 40,
+                              backgroundImage: CachedNetworkImageProvider(
+                                'https://example.com/default_profile_image.jpg',
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: 40,
+                              backgroundImage: FileImage(_image!),
+                            ),
                       const SizedBox(
                         width: 16,
                       ),
@@ -948,7 +958,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Search location",
+                            "Search location ",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -1119,7 +1129,7 @@ class _HomePageState extends State<HomePage> {
                       width: 200,
                       child: LoadingAnimationWidget.flickr(
                         leftDotColor: Colors.greenAccent,
-                        rightDotColor: Colors.pinkAccent,
+                        rightDotColor: Colors.redAccent,
                         size: 50,
                       ),
                     ),
@@ -1137,7 +1147,7 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           color: Colors.white70,
                           borderRadius: BorderRadius.circular(25),
-                          border: Border.all(width: 1.5, color: Colors.grey),
+                          border: Border.all(width: 1.5, color: Colors.white),
                         ),
                         child: const Icon(
                           Icons.close,

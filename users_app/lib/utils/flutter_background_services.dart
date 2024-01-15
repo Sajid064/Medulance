@@ -91,43 +91,43 @@ void onStart(ServiceInstance service) async {
           Fluttertoast.showToast(msg: e.toString());
         });
 
-        ShakeDetector.autoStart(
-            shakeThresholdGravity: 7,
-            shakeSlopTimeMS: 500,
-            shakeCountResetTime: 3000,
-            minimumShakeCount: 1,
-            onPhoneShake: () async {
-              if (await Vibration.hasVibrator() ?? false) {
-                print("Test 2");
-                if (await Vibration.hasCustomVibrationsSupport() ?? false) {
-                  print("Test 3");
-                  Vibration.vibrate(duration: 1000);
-                } else {
-                  print("Test 4");
-                  Vibration.vibrate();
-                  await Future.delayed(Duration(milliseconds: 500));
-                  Vibration.vibrate();
-                }
-                print("Test 5");
-              }
-              String messageBody =
-                  "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}";
-              sendMessage(messageBody);
-            });
+        // ShakeDetector.autoStart(
+        //     shakeThresholdGravity: 7,
+        //     shakeSlopTimeMS: 500,
+        //     shakeCountResetTime: 3000,
+        //     minimumShakeCount: 1,
+        //     onPhoneShake: () async {
+        //       if (await Vibration.hasVibrator() ?? false) {
+        //         print("Test 2");
+        //         if (await Vibration.hasCustomVibrationsSupport() ?? false) {
+        //           print("Test 3");
+        //           Vibration.vibrate(duration: 1000);
+        //         } else {
+        //           print("Test 4");
+        //           Vibration.vibrate();
+        //           await Future.delayed(Duration(milliseconds: 500));
+        //           Vibration.vibrate();
+        //         }
+        //         print("Test 5");
+        //       }
+        //       String messageBody =
+        //           "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}";
+        //       sendMessage(messageBody);
+        //     });
 
-        flutterLocalNotificationsPlugin.show(
-          888,
-          "women safety app",
-          "shake feature enable",
-          NotificationDetails(
-              android: AndroidNotificationDetails(
-            "script academy",
-            "foregrounf service",
-            "used for imp notifcation",
-            icon: 'ic_bg_service_small',
-            ongoing: true,
-          )),
-        );
+        // flutterLocalNotificationsPlugin.show(
+        //   888,
+        //   "Medulance",
+        //   "shake feature enabled",
+        //   NotificationDetails(
+        //       android: AndroidNotificationDetails(
+        //     "script academy",
+        //     "foregrounf service",
+        //     "used for imp notifcation",
+        //     icon: 'ic_bg_service_small',
+        //     ongoing: true,
+        //   )),
+        // );
       }
     }
   });

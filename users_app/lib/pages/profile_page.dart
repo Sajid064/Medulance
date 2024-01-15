@@ -92,7 +92,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
@@ -121,8 +120,10 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: getImage,
-              child: Text('Upload Image', style: TextStyle(color: Colors.pinkAccent, fontSize: 18),),
-
+              child: Text(
+                'Upload Image',
+                style: TextStyle(color: Colors.pinkAccent, fontSize: 18),
+              ),
             ),
 
             const SizedBox(
@@ -133,7 +134,6 @@ class _ProfilePageState extends State<ProfilePage> {
             Padding(
               padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 8),
               child: TextField(
-                
                 controller: nameTextEditingController,
                 textAlign: TextAlign.center,
                 enabled: false,
@@ -215,7 +215,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
 
             const SizedBox(
-              height: 20,
+              height: 24,
             ),
 
             //logout btn
@@ -228,8 +228,11 @@ class _ProfilePageState extends State<ProfilePage> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.pinkAccent,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 80, vertical: 18)),
-              child: const Text("Logout", style: TextStyle(color: Colors.white, fontSize: 20),),
+                      const EdgeInsets.symmetric(horizontal: 80, vertical: 16)),
+              child: const Text(
+                "Logout",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
           ],
         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
 
@@ -8,13 +7,9 @@ class AboutPage extends StatefulWidget {
   State<AboutPage> createState() => _AboutPageState();
 }
 
-
-
-class _AboutPageState extends State<AboutPage>
-{
+class _AboutPageState extends State<AboutPage> {
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -25,46 +20,43 @@ class _AboutPageState extends State<AboutPage>
         ),
         centerTitle: true,
         leading: IconButton(
-          onPressed: ()
-          {
+          onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back, color: Colors.grey,),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.grey,
+          ),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Image.asset(
               "assets/images/logo.png",
             ),
-
             const SizedBox(
               height: 20,
             ),
-
             const Padding(
               padding: EdgeInsets.all(4.0),
               child: Text(
-                "This app is developed by Coding Cafe.",
+                "This app is developed by Sajid, Shohan and Mostak",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
                 ),
               ),
             ),
-
             const SizedBox(
               height: 10,
             ),
-
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "In case of any misuse or any report please contact admin at alizeb875@gmail.com",
+                "In case of any misuse or any report please contact admin at medulance@gmail.com",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey,
@@ -72,7 +64,6 @@ class _AboutPageState extends State<AboutPage>
                 ),
               ),
             ),
-
           ],
         ),
       ),

@@ -32,28 +32,41 @@ class FirebrigadeEmergency extends StatelessWidget {
                   ],
                 )),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(14.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.white.withOpacity(0.5),
-                    child: Image.asset('assets/flame.png'),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Colors.white.withOpacity(0.5),
+                        child: Image.asset('assets/flame.png'),
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '  Fire Brigade',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.06,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Fire Brigade',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width * 0.06,
-                          ),
-                        ),
                         Text(
                           'In case of Fire emergency',
                           style: TextStyle(

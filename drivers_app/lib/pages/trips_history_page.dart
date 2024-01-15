@@ -17,7 +17,7 @@ class _TripsHistoryPageState extends State<TripsHistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.teal.shade400,
         title: const Text(
           'My Completed Trips',
           style: TextStyle(
@@ -112,7 +112,8 @@ class _TripsHistoryPageState extends State<TripsHistoryPage> {
                                       tripsList[index]["fareAmount"].toString(),
                                   style: const TextStyle(
                                     fontSize: 16,
-                                    color: Colors.pinkAccent,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ],

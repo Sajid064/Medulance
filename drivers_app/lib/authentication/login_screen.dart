@@ -145,10 +145,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         checkIfNetworkIsAvailable();
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.pinkAccent,
+                          backgroundColor: Colors.teal,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 80, vertical: 15)),
-                      child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 22,),),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -164,11 +170,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (c) => SignUpScreen()));
                 },
-                child: const Text(
-                  "Don\'t have an Account? Register Here",
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don\'t have an Account? ",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const Text(
+                      "Register Here",
+                      style: TextStyle(
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

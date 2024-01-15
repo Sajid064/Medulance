@@ -10,31 +10,24 @@ class TripsPage extends StatefulWidget {
   State<TripsPage> createState() => _TripsPageState();
 }
 
-class _TripsPageState extends State<TripsPage> 
-{
+class _TripsPageState extends State<TripsPage> {
   String currentDriverTotalTripsCompleted = "";
-  
-  getCurrentDriverTotalNumberOfTripsCompleted() async
-  {
-    DatabaseReference tripRequestsRef = FirebaseDatabase.instance.ref().child("tripRequests");
 
-    await tripRequestsRef.once().then((snap)async
-    {
-      if(snap.snapshot.value != null)
-      {
+  getCurrentDriverTotalNumberOfTripsCompleted() async {
+    DatabaseReference tripRequestsRef =
+        FirebaseDatabase.instance.ref().child("tripRequests");
+
+    await tripRequestsRef.once().then((snap) async {
+      if (snap.snapshot.value != null) {
         Map<dynamic, dynamic> allTripsMap = snap.snapshot.value as Map;
         int allTripsLength = allTripsMap.length;
 
         List<String> tripsCompletedByCurrentDriver = [];
 
-        allTripsMap.forEach((key, value)
-        {
-          if(value["status"] != null)
-          {
-            if(value["status"] == "ended")
-            {
-              if(value["driverID"] == FirebaseAuth.instance.currentUser!.uid)
-              {
+        allTripsMap.forEach((key, value) {
+          if (value["status"] != null) {
+            if (value["status"] == "ended") {
+              if (value["driverID"] == FirebaseAuth.instance.currentUser!.uid) {
                 tripsCompletedByCurrentDriver.add(key);
               }
             }
@@ -42,7 +35,8 @@ class _TripsPageState extends State<TripsPage>
         });
 
         setState(() {
-          currentDriverTotalTripsCompleted = tripsCompletedByCurrentDriver.length.toString();
+          currentDriverTotalTripsCompleted =
+              tripsCompletedByCurrentDriver.length.toString();
         });
       }
     });
@@ -52,50 +46,63 @@ class _TripsPageState extends State<TripsPage>
   void initState() {
     // TODO: implement initState
     super.initState();
-    
+
     getCurrentDriverTotalNumberOfTripsCompleted();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        title: const Text(
+          'Trips',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           //Total Trips
-          Center(
-            child: Container(
-              color: Colors.indigo,
-              width: 300,
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  children: [
-
-                    Image.asset("assets/images/totaltrips.png", width: 120,),
-
-                    const SizedBox(
-                      height: 10,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => TripsHistoryPage()));
+            },
+            child: Center(
+              child: Container(
+                width: 300,
+                child: Card(
+                  color: Colors.teal.shade300,
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/totaltrips.png",
+                          width: 120,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Total Trips:",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        Text(
+                          currentDriverTotalTripsCompleted,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
-
-                    const Text(
-                      "Total Trips:",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-
-                    Text(
-                      currentDriverTotalTripsCompleted,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -107,39 +114,38 @@ class _TripsPageState extends State<TripsPage>
 
           //check trip history
           GestureDetector(
-            onTap: ()
-            {
-              Navigator.push(context, MaterialPageRoute(builder: (c)=> TripsHistoryPage()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => TripsHistoryPage()));
             },
             child: Center(
               child: Container(
-                color: Colors.indigo,
                 width: 300,
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Column(
-                    children: [
-
-                      Image.asset("assets/images/tripscompleted.png", width: 150,),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      const Text(
-                        "Check Trips History",
-                        style: TextStyle(
-                          color: Colors.white,
+                child: Card(
+                  elevation: 20,
+                  color: Colors.teal.shade300,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/tripscompleted.png",
+                          width: 150,
                         ),
-                      ),
-
-                    ],
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Check Trips History",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-
         ],
       ),
     );

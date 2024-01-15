@@ -32,10 +32,12 @@ class PoliceEmergency extends StatelessWidget {
                   ],
                 )),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(14.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row( 
+                    children: [
                   CircleAvatar(
                     radius: 25,
                     backgroundColor: Colors.white.withOpacity(0.5),
@@ -47,13 +49,24 @@ class PoliceEmergency extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Police',
+                          '  Police',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: MediaQuery.of(context).size.width * 0.06,
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        
                         Text(
                           'In case of Police emergency',
                           style: TextStyle(

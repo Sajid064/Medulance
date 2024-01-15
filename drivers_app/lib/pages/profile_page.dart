@@ -42,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.teal,
         title: const Text(
           'Driver Profile',
           style: TextStyle(
@@ -93,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     prefixIcon: Icon(
                       Icons.person,
-                      color: Colors.pinkAccent,
+                      color: Colors.teal,
                     ),
                   ),
                 ),
@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     prefixIcon: Icon(
                       Icons.phone_android_outlined,
-                      color: Colors.pinkAccent,
+                      color: Colors.teal,
                     ),
                   ),
                 ),
@@ -153,7 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     prefixIcon: Icon(
                       Icons.email,
-                      color: Colors.pinkAccent,
+                      color: Colors.teal,
                     ),
                   ),
                 ),
@@ -182,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     prefixIcon: Icon(
                       Icons.drive_eta_rounded,
-                      color: Colors.pinkAccent,
+                      color: Colors.teal,
                     ),
                   ),
                 ),
@@ -200,9 +200,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       MaterialPageRoute(builder: (c) => LoginScreen()));
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pinkAccent,
+                    backgroundColor: Colors.teal,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 80, vertical: 18)),
+                        horizontal: 80, vertical: 16)),
                 child: const Text(
                   "Logout",
                   style: TextStyle(color: Colors.white, fontSize: 20),

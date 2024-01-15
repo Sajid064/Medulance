@@ -14,73 +14,62 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-
-
-class _SignUpScreenState extends State<SignUpScreen>
-{
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController userNameTextEditingController = TextEditingController();
-  TextEditingController userPhoneTextEditingController = TextEditingController();
+  TextEditingController userPhoneTextEditingController =
+      TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   CommonMethods cMethods = CommonMethods();
 
-
-  checkIfNetworkIsAvailable()
-  {
+  checkIfNetworkIsAvailable() {
     cMethods.checkConnectivity(context);
 
     signUpFormValidation();
   }
 
-  signUpFormValidation()
-  {
-    if(userNameTextEditingController.text.trim().length < 3)
-    {
-      cMethods.displaySnackBar("your name must be atleast 4 or more characters.", context);
-    }
-    else if(userPhoneTextEditingController.text.trim().length < 7)
-    {
-      cMethods.displaySnackBar("your phone number must be atleast 8 or more characters.", context);
-    }
-    else if(!emailTextEditingController.text.contains("@"))
-    {
+  signUpFormValidation() {
+    if (userNameTextEditingController.text.trim().length < 3) {
+      cMethods.displaySnackBar(
+          "your name must be atleast 4 or more characters.", context);
+    } else if (userPhoneTextEditingController.text.trim().length < 7) {
+      cMethods.displaySnackBar(
+          "your phone number must be atleast 8 or more characters.", context);
+    } else if (!emailTextEditingController.text.contains("@")) {
       cMethods.displaySnackBar("please write valid email.", context);
-    }
-    else if(passwordTextEditingController.text.trim().length < 5)
-    {
-      cMethods.displaySnackBar("your password must be atleast 6 or more characters.", context);
-    }
-    else
-    {
+    } else if (passwordTextEditingController.text.trim().length < 5) {
+      cMethods.displaySnackBar(
+          "your password must be atleast 6 or more characters.", context);
+    } else {
       registerNewUser();
     }
   }
 
-  registerNewUser() async
-  {
+  registerNewUser() async {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext context) => LoadingDialog(messageText: "Registering your account..."),
+      builder: (BuildContext context) =>
+          LoadingDialog(messageText: "Registering your account..."),
     );
 
-    final User? userFirebase = (
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailTextEditingController.text.trim(),
-        password: passwordTextEditingController.text.trim(),
-      ).catchError((errorMsg)
-      {
-        Navigator.pop(context);
-        cMethods.displaySnackBar(errorMsg.toString(), context);
-      })
-    ).user;
+    final User? userFirebase = (await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+      email: emailTextEditingController.text.trim(),
+      password: passwordTextEditingController.text.trim(),
+    )
+            .catchError((errorMsg) {
+      Navigator.pop(context);
+      cMethods.displaySnackBar(errorMsg.toString(), context);
+    }))
+        .user;
 
-    if(!context.mounted) return;
+    if (!context.mounted) return;
     Navigator.pop(context);
 
-    DatabaseReference usersRef = FirebaseDatabase.instance.ref().child("users").child(userFirebase!.uid);
-    Map userDataMap =
-    {
+    DatabaseReference usersRef =
+        FirebaseDatabase.instance.ref().child("users").child(userFirebase!.uid);
+    Map userDataMap = {
       "name": userNameTextEditingController.text.trim(),
       "email": emailTextEditingController.text.trim(),
       "phone": userPhoneTextEditingController.text.trim(),
@@ -89,25 +78,21 @@ class _SignUpScreenState extends State<SignUpScreen>
     };
     usersRef.set(userDataMap);
 
-    Navigator.push(context, MaterialPageRoute(builder: (c)=> HomePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (c) => HomePage()));
   }
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-
-              Image.asset(
-                "assets/images/logo.png"
-              ),
+              Image.asset("assets/images/logo.png"),
 
               const Text(
-                "Create a User\'s Account",
+                "Create a User Account",
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
@@ -119,7 +104,6 @@ class _SignUpScreenState extends State<SignUpScreen>
                 padding: const EdgeInsets.all(22),
                 child: Column(
                   children: [
-
                     TextField(
                       controller: userNameTextEditingController,
                       keyboardType: TextInputType.text,
@@ -130,13 +114,13 @@ class _SignUpScreenState extends State<SignUpScreen>
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
                     ),
-
-                    const SizedBox(height: 22,),
-
+                    const SizedBox(
+                      height: 22,
+                    ),
                     TextField(
                       controller: userPhoneTextEditingController,
                       keyboardType: TextInputType.text,
@@ -147,13 +131,13 @@ class _SignUpScreenState extends State<SignUpScreen>
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
                     ),
-
-                    const SizedBox(height: 22,),
-
+                    const SizedBox(
+                      height: 22,
+                    ),
                     TextField(
                       controller: emailTextEditingController,
                       keyboardType: TextInputType.emailAddress,
@@ -164,13 +148,13 @@ class _SignUpScreenState extends State<SignUpScreen>
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
                     ),
-
-                    const SizedBox(height: 22,),
-
+                    const SizedBox(
+                      height: 22,
+                    ),
                     TextField(
                       controller: passwordTextEditingController,
                       obscureText: true,
@@ -182,47 +166,61 @@ class _SignUpScreenState extends State<SignUpScreen>
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
                     ),
-
-                    const SizedBox(height: 38,),
-
+                    const SizedBox(
+                      height: 38,
+                    ),
                     ElevatedButton(
-                      onPressed: ()
-                      {
+                      onPressed: () {
                         checkIfNetworkIsAvailable();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
-                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 13)
-                      ),
+                          backgroundColor: Colors.pinkAccent,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 80, vertical: 13)),
                       child: const Text(
-                        "Sign Up",  style: TextStyle(color: Colors.white, fontSize: 22,),
+                        "Sign Up",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                        ),
                       ),
                     ),
-
                   ],
                 ),
               ),
 
-              const SizedBox(height: 12,),
-
               //textbutton
               TextButton(
-                onPressed: ()
-                {
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (c) => LoginScreen()));
                 },
-                child: const Text(
-                  "Already have an Account? Login Here",
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Already have an Account? ",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const Text(
+                      "Login Here",
+                      style: TextStyle(
+                        color: Colors.pinkAccent,
+                      ),
+                    ),
+                  ],
                 ),
               ),
 
+              SizedBox(
+                height: 40,
+              )
             ],
           ),
         ),

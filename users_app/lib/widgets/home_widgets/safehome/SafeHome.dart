@@ -24,9 +24,9 @@ class _SafeHomeState extends State<SafeHome> {
         phoneNumber: phoneNumber, message: message, simSlot: 1);
     if (result == SmsStatus.sent) {
       print("Sent");
-      Fluttertoast.showToast(msg: "send");
+      Fluttertoast.showToast(msg: "Message sent to Emergency Contacts");
     } else {
-      Fluttertoast.showToast(msg: "failed");
+      Fluttertoast.showToast(msg: "Failed to send message");
     }
   }
 
@@ -104,58 +104,69 @@ class _SafeHomeState extends State<SafeHome> {
       builder: (context) {
         return Container(
           height: MediaQuery.of(context).size.height / 2.4,
-          child: Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "SEND THE CURRENT LOCATION IMMEDIATELY TO THE EMERGENCY CONTACTS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(height: 50),
-                ElevatedButton(
-                  onPressed: () async {
-                    String recipients = "";
-                    List<TContact> contactList =
-                        await DatabaseHelper().getContactList();
-                    print(contactList.length);
-                    if (contactList.isEmpty) {
-                      Fluttertoast.showToast(msg: "emergency contact is empty");
-                    } else {
-                      String messageBody =
-                          "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
+          child: Column(
+            children: [
+              Icon(
+                Icons.horizontal_rule,
+                color: Colors.grey,
+                size: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 10,),
+                    Text(
+                      "SEND THE CURRENT LOCATION IMMEDIATELY TO THE EMERGENCY CONTACTS",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(height: 40),
+                    ElevatedButton(
+                      onPressed: () async {
+                        String recipients = "";
+                        List<TContact> contactList =
+                            await DatabaseHelper().getContactList();
+                        print(contactList.length);
+                        if (contactList.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg: "Emergency contact list is empty");
+                        } else {
+                          String messageBody =
+                              "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
 
-                      if (await _isPermissionGranted()) {
-                        contactList.forEach((element) {
-                          _sendSms("${element.number}",
-                              "i am in trouble $messageBody");
-                        });
-                      } else {
-                        Fluttertoast.showToast(msg: "something wrong");
-                      }
-                    }
-                  },
-                  child: Text(
-                    "SOS Button",
-                    style: TextStyle(fontSize: 22, color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pinkAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
-                    minimumSize: Size(220.0, 65.0),
-                  ),
+                          if (await _isPermissionGranted()) {
+                            contactList.forEach((element) {
+                              _sendSms("${element.number}",
+                                  "i am in trouble $messageBody");
+                            });
+                          } else {
+                            Fluttertoast.showToast(msg: "something wrong");
+                          }
+                        }
+                      },
+                      child: Text(
+                        "SOS Button",
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        minimumSize: Size(220.0, 65.0),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
               )),
         );
       },
@@ -179,10 +190,15 @@ class _SafeHomeState extends State<SafeHome> {
             children: [
               Expanded(
                   child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ListTile(
-                    title: Text("Send Location"),
-                    subtitle: Text("Share Location"),
+                    title: Text("SOS Button"),
+                    titleTextStyle: TextStyle(
+                        fontSize: 26,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
+                    subtitle: Text("Share your location"),
                   ),
                 ],
               )),
