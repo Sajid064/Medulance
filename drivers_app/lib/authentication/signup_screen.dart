@@ -208,7 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -225,7 +225,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -242,7 +242,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -260,7 +260,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -277,7 +277,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -294,7 +294,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -311,7 +311,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontSize: 15,
                       ),
                     ),
@@ -337,9 +337,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
-
-              
-           
 
               //textbutton
               TextButton(

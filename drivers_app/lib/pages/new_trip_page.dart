@@ -506,13 +506,15 @@ class _NewTripPageState extends State<NewTripPage> {
                           child: Row(
                             children: [
                               Text("  "),
-                              Text(
-                                widget.newTripDetailsInfo!.pickupAddress
-                                    .toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.grey,
+                              Expanded(
+                                child: Text(
+                                  widget.newTripDetailsInfo!.pickupAddress
+                                      .toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ],
@@ -537,13 +539,15 @@ class _NewTripPageState extends State<NewTripPage> {
                           child: Row(
                             children: [
                               Text("  "),
-                              Text(
-                                widget.newTripDetailsInfo!.dropOffAddress
-                                    .toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.grey,
+                              Expanded(
+                                child: Text(
+                                  widget.newTripDetailsInfo!.dropOffAddress
+                                      .toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ],
