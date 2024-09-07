@@ -14,7 +14,7 @@
 
 ## Screenshots:
 
-### User App:
+## *User App*:
 
 <p>
 <img src="https://github.com/Sajid064/Medulance/blob/main/users_app/Screenshots/homepage1.png" width = "273" height = "480"/>
@@ -48,7 +48,7 @@
 
 <br>
 
-### Driver App:
+## *Driver App*:
 
 <p>
 <img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/logindriver.png" width = "273" height = "480"/>
@@ -76,7 +76,7 @@
 
 <br>
 
-### Admin WebApp:
+## *Admin WebApp*:
 
 <p>
 <img src="https://github.com/Sajid064/Medulance/blob/main/admin_web/Screenshots/admin1.JPG" width = "405" height = "240"/>
