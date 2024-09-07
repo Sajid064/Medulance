@@ -51,27 +51,26 @@
 ### Driver App:
 
 <p>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/logindriver.png" width = "273" height = "480"/>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/offline.png" width = "273" height = "480"/>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/online.png" width = "273" height = "480"/>
+</p>
+
+<p>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/reqforambu.png" width = "273" height = "480"/>
 <img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/arrived.png" width = "273" height = "480"/>
-<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/collect_cash.png" width = "273" height = "480"/>
-<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/earnings.png" width = "273" height = "480"/>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/start_trip.png" width = "273" height = "480"/>  
 </p>
 
 <p>
 <img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/end_trip.png" width = "273" height = "480"/>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/collect_cash.png" width = "273" height = "480"/>
 <img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/history.png" width = "273" height = "480"/>
-<img src="https://github.com/Sajid064/Medulance/blob/main/drievrs_app/Screenshots/logindriver.png" width = "273" height = "480"/>
-</p>
-
-<p>
-<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/offline.png" width = "273" height = "480"/>
-<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/online.png" width = "273" height = "480"/>
-<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/reqforambu.png" width = "273" height = "480"/>
 </p>
 
 <p>
 <img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/profile.png" width = "273" height = "480"/> 
-<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/start_trip.png" width = "273" height = "480"/>
+<img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/earnings.png" width = "273" height = "480"/>
 <img src="https://github.com/Sajid064/Medulance/blob/main/drivers_app/Screenshots/trips.png" width = "273" height = "480"/>
 </p>
-
 
